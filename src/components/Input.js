@@ -10,7 +10,7 @@ export default class Input extends Component {
   render() {
     return (
       <>
-       <input type="text" placeholder={this.props.placeholder} onChange={this.props.handleInputs} name={this.props.name}></input> 
+       <input type={this.props.type} placeholder={this.props.placeholder} onChange={this.props.handleInputs} name={this.props.name}></input> 
       </>
     )
   }

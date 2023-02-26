@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { CarouselProvider, Slider, Slide, Image } from "pure-react-carousel";
+import { Link } from "react-router-dom";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import "pure-react-carousel/dist/react-carousel.es.css";
@@ -8,11 +9,11 @@ import Img2 from "../images/Images2.png";
 import Img3 from "../images/Images3.png";
 import Img4 from "../images/Images4.png";
 import logo from "../images/instagramlogo.jpg";
-import "../App.css";
+import "../css/Login.css";
 import "../firesbase";
 import {
   getAuth,
-  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
@@ -42,34 +43,30 @@ export default class Login extends Component {
   };
 
   handleLogin = () => {
-    console.log(auth);
-    createUserWithEmailAndPassword(
+    signInWithEmailAndPassword(
       auth,
       this.state.email,
       this.state.password
     )
       .then((userCredential) => {
-        // Signed in
+        window.location = '/main'
         const user = userCredential.user;
+        localStorage.setItem("users", JSON.stringify(user));
         console.log(user);
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
-        // ..
       });
   };
 
   handleLoginWithGoogle = () => {
-    console.log(auth, provider);
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result);
+        window.location = '/main'
         const user = result.user;
         localStorage.setItem("users", JSON.stringify(user));
-        // window.location.href = "/";
       })
       .catch((error) => {
         console.log(error);
@@ -81,65 +78,67 @@ export default class Login extends Component {
       <div className="wrapper">
         <div className="login-main-wrapper">
           <div className="carousel-wrapper">
+            <div className="img">
             <CarouselProvider
               totalSlides={4}
               visibleSlides={1}
-              naturalSlideHeight={250}
-              naturalSlideWidth={516}
+              naturalSlideHeight={580}
+              naturalSlideWidth={330}
               isPlaying={true}
-              interval={3000} // increase interval time to reduce load on page
+              interval={5000} // increase interval time to reduce load on page
               dragEnabled={false}
               infinite={true}
               touchEnabled={false}
             >
-              <Slider style={{ height: "560px" }}>
-                <Slide index={0}>
-                  <Image className="img" src={Img1} alt="Image 1" />
+              <Slider >
+                <Slide index={0} style={{height:"100%"}}>
+                  <Image  src={Img1} alt="Image 1" />
                 </Slide>
-                <Slide index={1}>
-                  <Image className="img" src={Img2} alt="Image 2" />
+                <Slide index={1} style={{height:"100%"}}>
+                  <Image  src={Img2} alt="Image 2" />
                 </Slide>
-                <Slide index={2}>
-                  <Image className="img" src={Img3} alt="Image 3" />
+                <Slide index={2} style={{height:"100%"}}>
+                  <Image src={Img3} alt="Image 3" />
                 </Slide>
-                <Slide index={3}>
-                  <Image className="img" src={Img4} alt="Image 4" />
+                <Slide index={3} style={{height:"100%"}}>
+                  <Image src={Img4} alt="Image 4" />
                 </Slide>
               </Slider>
             </CarouselProvider>
+            </div>
           </div>
           <div className="login-wrapper">
             <div>
               <img src={logo} alt="Logo" />
             </div>
             <Input
-              type="text"
-              placeholder="Email"
+              type={"email"}
+              placeholder={"Phone number username or email address"}
               name="Email"
               handleInputs={this.handleInputs}
             />
             <Input
-              type="password"
-              placeholder="Password"
+              type={"password"}
+              placeholder={"Password"}
               name="password"
               handleInputs={this.handleInputs}
             />
             <div className="btn-container">
-              <Button title="Log in" handleLogin={this.handleLogin} />
+              <Button title="Log in" fun={this.handleLogin} />
               <Button
                 title="Log in with Google"
-                handleLogin={this.handleLoginWithGoogle}
+                  fun={this.handleLoginWithGoogle}
               />
             </div>
             <div className="dont-have-account">
-              Don't have an Account Sign Up
+              Don't have an Account ?<Link to={"/signup"} >Sign Up</Link>
             </div>
           </div>
         </div>
         <div className="footer-wrapper">
           <div className="footer-tabs"></div>
           <div className="copyright">
-            © {new Date().getFullYear()} Shabab Ali. All rights reserved.
+            {/* © {new Date().getFullYear()} Shabab Ali. All rights reserved. */}
           </div>
         </div>
       </div>
