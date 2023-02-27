@@ -49,7 +49,7 @@ export default class Login extends Component {
       this.state.password
     )
       .then((userCredential) => {
-        window.location = '/main'
+        window.location.href = '/main'
         const user = userCredential.user;
         localStorage.setItem("users", JSON.stringify(user));
         console.log(user);
@@ -64,7 +64,7 @@ export default class Login extends Component {
   handleLoginWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        window.location = '/main'
+        window.location.href = '/main'
         const user = result.user;
         localStorage.setItem("users", JSON.stringify(user));
       })
