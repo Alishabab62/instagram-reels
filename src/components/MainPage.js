@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import Logo from "../images/instagramlogo.jpg";
 import LogoutComponent from "../components/LogoutComponent";
 import { Link } from "react-router-dom";
+import Create from "./Create";
+import Button from "../components/Button";
 
 // import HomeIcon from '@mui/icons-material/HomeIcon';
 // import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
-import Button from "../components/Button";
 import "../css/MainPage.css";
 import Feed from "./Feed";
 
@@ -14,6 +15,7 @@ export default class MainPage extends Component {
     super();
     this.state = {
       logoutContainer: false,
+      createContainer:false
     };
   }
   handleLogoutContainer = () => {
@@ -21,6 +23,11 @@ export default class MainPage extends Component {
       logoutContainer: !this.state.logoutContainer,
     });
   };
+  handleCreateComponent = ()=>{
+    this.setState({
+      createContainer:!this.state.createContainer
+    })
+  }
 moreButton = {
   border: "none",
   backgroundColor: "transparent",
@@ -50,7 +57,7 @@ moreButton = {
             <Button title={"Reels"} />
             <Button title={"Messages"} />
             <Button title={"Notifications"} />
-            <Button title={"Create"} />
+            <Button title={"Create"} fun={this.handleCreateComponent} />
             <Button title={"Profile"} />
           </div>
           {this.state.logoutContainer ? <LogoutComponent /> : ""}
@@ -60,6 +67,7 @@ moreButton = {
         </div>
         <div className="main-wrapper-feed">
          <Feed/>
+         {this.state.createContainer ? <Create fun={this.handleCreateComponent}/> : ""}
         </div>
       </div>
     );
