@@ -55,6 +55,7 @@
   .login-wrapper img{
     margin: 30px 0px;
     width: 175px;
+    cursor: pointer;
   }
   .btn-container{
     margin-top: 20px;

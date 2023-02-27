@@ -14,6 +14,10 @@ export default class LogoutComponent extends Component {
         console.log(error)
       });
   };
+  switchAppearance = ()=>{
+    console.log("He")
+    document.body.classList.add('light');
+  } 
   render() {
     return (
       <div className='main-wrapper-logout'>
@@ -21,7 +25,7 @@ export default class LogoutComponent extends Component {
         <Button title={"Setting"}/>
         <Button title={"Your Activity"}/>
         <Button title={"Saved"}/>
-        <Button title={"Switch appearance"}/>
+        <Button title={"Switch appearance"} fun={this.switchAppearance}/>
         <Button title={"Report a problem"}/>
         </div>
         <div className='lower-div'>
