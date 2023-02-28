@@ -4,6 +4,8 @@ import LogoutComponent from "../components/LogoutComponent";
 import { Link } from "react-router-dom";
 import Create from "./Create";
 import Button from "../components/Button";
+import Reels from './Reels';
+import Profile from './Profile'
 
 // import HomeIcon from '@mui/icons-material/HomeIcon';
 // import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
@@ -15,7 +17,10 @@ export default class MainPage extends Component {
     super();
     this.state = {
       logoutContainer: false,
-      createContainer:false
+      createContainer:false,
+      handleReels:false,
+      handleProfile:false,
+      handleFeed:true
     };
   }
   handleLogoutContainer = () => {
@@ -26,6 +31,26 @@ export default class MainPage extends Component {
   handleCreateComponent = ()=>{
     this.setState({
       createContainer:!this.state.createContainer
+    })
+  }
+  handleReels = ()=>{
+      this.setState({
+        handleReels:! this.state.handleReels,
+        handleProfile:false,
+        handleFeed:false
+      })
+  }
+  handleHome =()=>{
+    this.setState({
+      handleReels:false,
+      handleFeed:true
+    })
+  }
+  handleProfile = ()=>{
+    this.setState({
+      handleProfile:!this.state.handleProfile,
+      handleReels:false,
+      handleFeed:false
     })
   }
 moreButton = {
@@ -51,14 +76,14 @@ moreButton = {
             <Link to="/main">
             <img src={Logo} alt="logo" />
             </Link>
-            <Button title={"Home"} />
+            <Button title={"Home"} fun = {this.handleHome} />
             <Button title={"Search"} />
             <Button title={"Explore"} />
-            <Button title={"Reels"} />
+            <Button title={"Reels"} fun={this.handleReels} />
             <Button title={"Messages"} />
             <Button title={"Notifications"} />
             <Button title={"Create"} fun={this.handleCreateComponent} />
-            <Button title={"Profile"} />
+            <Button title={"Profile"} fun={this.handleProfile} />
           </div>
           {this.state.logoutContainer ? <LogoutComponent /> : ""}
           <Button  style={this.moreButton} title={"MORE"}
@@ -66,8 +91,10 @@ moreButton = {
          / >
         </div>
         <div className="main-wrapper-feed">
-         <Feed/>
+          {this.state.handleFeed ? <Feed/> : ""}
+         {this.state.handleReels ? <Reels/> : ""}
          {this.state.createContainer ? <Create fun={this.handleCreateComponent}/> : ""}
+         {this.state.handleProfile ? <Profile/> : "" }
         </div>
       </div>
     );
