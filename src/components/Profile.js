@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import profileImg from '../images/profile.png'
 import Button from './Button'
 
@@ -11,7 +12,9 @@ export default class Profile extends Component {
             <div className='profile-details'>
                 <div className='top-div-profile'>
                     <div className='username'>itz.ali.shabab</div>
+                    <Link to={"/main/profile/edit"}>
                     <Button title={"Edit Profile"}/>
+                    </Link>
                     <div className='settings'>Setting</div>
                 </div>
                 <div className='center-div-profile'>
