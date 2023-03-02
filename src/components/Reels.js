@@ -34,7 +34,7 @@ export default class Reels extends Component {
       <div className="main-reels-wrapper">
         {this.state.posts.map((item) => {
           const data = item.data();
-          console.log(data)
+          // console.log(data)
           return (
             <div className="reels-wrapper">
             <div key={data.pId}>

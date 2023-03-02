@@ -1,20 +1,32 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import profileImg from '../images/profile.png'
 import Button from './Button'
 import Sidebar from './Sidebar'
 
 export default class Profile extends Component {
+  constructor(){
+    super()
+    this.state={
+      user:{}
+    }
+  }
+
+  componentDidMount(){
+    let data = JSON.parse(localStorage.getItem("user")) || {};
+    this.setState({
+      user:data
+    })
+  }
   render() {
     return (
       <div className='profile-wrapper-main'>
         <Sidebar />
         <div className='profile-wrapper'>
         <header>
-            <div className='profile-image'><img src={profileImg} alt="profile"/></div>
+            <div className='profile-image'><img src={this.state.user.profileUrl} alt="profile"/></div>
             <div className='profile-details'>
                 <div className='top-div-profile'>
-                    <div className='username'>itz.ali.shabab</div>
+                    <div className='username'>{this.state.user.fullName}</div>
                     <Link to={"/main/profile/edit"}>
                     <Button title={"Edit Profile"}/>
                     </Link>

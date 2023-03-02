@@ -42,10 +42,11 @@ export default class ProfilePicUpload extends Component {
           email:this.state.users.email,
           userId : uid,
           fullName : this.state.users.displayName,
-          profilerl:downloadURL,
+          profileUrl:downloadURL,
           createdAt: Date.now(),
         };      
-        console.log(obj)
+        console.log(obj);
+        localStorage.setItem("user" , JSON.stringify(obj));
         addDoc(database.users, obj ).then((res)=>{
           console.log(res)
         })
