@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import profileImg from '../images/profile.png'
 import Button from './Button'
+import Sidebar from './Sidebar'
 
 export default class Profile extends Component {
   render() {
     return (
       <div className='profile-wrapper-main'>
+        <Sidebar />
+        <div className='profile-wrapper'>
         <header>
             <div className='profile-image'><img src={profileImg} alt="profile"/></div>
             <div className='profile-details'>
@@ -28,6 +31,7 @@ export default class Profile extends Component {
                 </div>
             </div>
         </header>
+      </div>
       </div>
     )
   }

@@ -9,6 +9,7 @@ import AddCommentIcon from '@mui/icons-material/AddComment';
 import SendIcon from '@mui/icons-material/Send';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import Sidebar from "./Sidebar";
 
 export default class Reels extends Component {
   constructor() {
@@ -28,6 +29,8 @@ export default class Reels extends Component {
   }
   render() {
     return (
+      <div>
+        <Sidebar/>
       <div className="main-reels-wrapper">
         {this.state.posts.map((item) => {
           const data = item.data();
@@ -63,6 +66,7 @@ export default class Reels extends Component {
             </div>
           );
         })}
+      </div>
       </div>
     );
   }

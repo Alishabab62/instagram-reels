@@ -1,22 +1,28 @@
 import React, { Component } from 'react'
 import Button from './Button';
 import ProfilePicUpload from './ProfilePicUpload';
+import Sidebar from './Sidebar';
 
 export default class EditProfile extends Component {
   constructor(){
     super()
     this.state = {
-      
+        handleProfileUploadContainer:false
     }
   }
-  
+  handleProfileUpload = ()=>{
+    this.setState({
+      handleProfileUploadContainer:! this.state.handleProfileUploadContainer
+    })
+  }
   render() {
     return (
       <div className='main-edit-profile-wrapper'>
+        <Sidebar />
         <div className='edit-wrapper'>       
           <div className='side-bar-edit'>
             <div className='upper-div'>
-                <Button  title={"Edit Profile"} fun = {this.handleInput}/>
+                <Button  title={"Edit Profile"} fun = {this.handleProfileUpload}/>
                 <Button title={"Change passowrd"} />
                 <Button title={"Apps and websites"}/>
                 <Button title={"Email notifications"}/>
@@ -33,9 +39,9 @@ export default class EditProfile extends Component {
             <div className='lower-div'></div>
         </div>
         <div className='edit-profile-details'>
-      {this.state.handleProfileUploadContainer ? <ProfilePicUpload/> : ""}
         </div>
       </div>
+      {this.state.handleProfileUploadContainer ? <ProfilePicUpload fun={this.handleProfileUpload}/> : ""}
     </div>
     )
   }
