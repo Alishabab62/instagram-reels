@@ -13,7 +13,7 @@
   width: 265px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
-    z-index: 1;
+  z-index: 1;
 }
 .side-bar .tab-wrapper {
   display: flex;
@@ -48,16 +48,15 @@
 .main-wrapper-feed {
   background-color: rgb(255, 255, 255);
   height: 100vh;
-  /* width: calc(100% - 145px); */
+
   width: 100%;
   display: flex;
-  justify-content: center;
-  position:absolute;
-  right: 0px;
+  justify-content: flex-end;
+  position: absolute;
+  right: 180px;
 }
 .main-wrapper-feed .feed-wrapper {
   width: 468px;
-  margin-right: 50px;
 }
 .main-wrapper-feed .stories-container {
   margin-top: 16px;
@@ -71,6 +70,14 @@
   align-items: center;
   overflow-x: scroll;
 }
+.main-wrapper-feed .feed {
+  width: 100%;
+  padding: 16px;
+}
+.main-wrapper-feed .reels-wrapper > div {
+  /* width: 100%; */
+}
+
 .main-wrapper-feed .stories-container::-webkit-scrollbar {
   display: none;
 }
@@ -149,6 +156,7 @@
   height: 500px;
   width: 347px;
   margin-top: 50px;
+  margin-left: 50px;
 }
 .main-wrapper-feed .suggestion-wrapper .profile-div {
   display: flex;
@@ -302,19 +310,19 @@
 video {
   width: 100%;
 }
- .reels-wrapper {
+.reels-wrapper {
   display: flex;
   position: relative;
   width: 450px;
 }
 
- .reels-details-video {
+.reels-details-video {
   position: absolute;
   z-index: 1;
   bottom: 10px;
   left: 10px;
 }
- .reels-details-video .top-div-reels {
+.reels-details-video .top-div-reels {
   display: flex;
   align-items: center;
 }
@@ -325,40 +333,40 @@ video {
   font-size: 14px;
   letter-spacing: 1px;
 }
- .reels-details-video img {
+.reels-details-video img {
   height: 30px;
   width: 30px;
   border-radius: 50%;
 }
- .reels-details-video .top-div-reels button {
+.reels-details-video .top-div-reels button {
   background-color: transparent;
   border: none;
   color: white;
   font-weight: 600;
   margin-left: 15px;
 }
- .reels-details-video .center-div-reels {
+.reels-details-video .center-div-reels {
   color: white;
   margin-top: 10px;
   font-size: 14px;
 }
- .reels-details-video .bottom-div-reels {
+.reels-details-video .bottom-div-reels {
   color: white;
   margin-top: 10px;
   font-size: 14px;
   margin-bottom: 15px;
 }
- .reels-wrapper .reels-details img {
+.reels-wrapper .reels-details img {
   height: 30px;
   width: 30px;
   border-radius: 50%;
 }
- .reels-details {
+.reels-details {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
 }
- .reels-details > * {
+.reels-details > * {
   margin: 10px 0px 10px 25px;
   font-size: 35px;
   color: rgb(38, 38, 38);
@@ -368,7 +376,7 @@ video {
   color: rgb(38, 38, 38);
   text-align: center;
 }
-.profile-wrapper-main{
+.profile-wrapper-main {
   margin: auto;
 }
 .profile-wrapper-main header {
@@ -420,11 +428,11 @@ video {
   margin-top: 30px;
 }
 
-.main-edit-profile-wrapper{
+.main-edit-profile-wrapper {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-  Arial, sans-serif;
+    Arial, sans-serif;
 }
-.main-edit-profile-wrapper .edit-wrapper{
+.main-edit-profile-wrapper .edit-wrapper {
   width: 60%;
   border: 1px solid rgb(219, 219, 219);
   margin: auto;
@@ -434,11 +442,11 @@ video {
   position: absolute;
   left: 417px;
 }
-.main-edit-profile-wrapper .edit-wrapper .side-bar-edit{
+.main-edit-profile-wrapper .edit-wrapper .side-bar-edit {
   width: 200px;
   border-right: 1px solid rgb(219, 219, 219);
 }
-.main-edit-profile-wrapper .edit-wrapper .side-bar-edit button{
+.main-edit-profile-wrapper .edit-wrapper .side-bar-edit button {
   background-color: transparent;
   border: none;
   color: rgb(38, 38, 38);
@@ -448,37 +456,33 @@ video {
   text-align: left;
   padding-left: 20px;
 }
-.main-edit-profile-wrapper .edit-wrapper .side-bar-edit button:hover{
+.main-edit-profile-wrapper .edit-wrapper .side-bar-edit button:hover {
   padding-left: 18px;
   border-left: 2px solid rgb(38, 38, 38);
 }
 
-.profile-wrapper{
+.profile-wrapper {
   position: absolute;
   left: 457px;
 }
 
-
-
-
-
-.profile-edit-container{
+.profile-edit-container {
   position: absolute;
   z-index: 5;
   background-color: rgba(0, 0, 0, 0.447);
   width: 100vw;
   height: 100vh;
 }
-.profile-edit-container input{
+.profile-edit-container input {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50% ,-50%);
+  transform: translate(-50%, -50%);
   padding: 100px;
   border-radius: 5px;
   border: 1px solid rgb(239, 239, 239);
-} 
-.profile-edit-container .close-icon{
+}
+.profile-edit-container .close-icon {
   position: absolute;
   right: 20px;
   top: 20px;

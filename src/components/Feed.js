@@ -94,7 +94,6 @@ export default class Feed extends Component {
           <div className="feed">
             {this.state.posts.map((item) => {
               const data = item.data();
-              //   console.log(data)
               return (
                 <div className="reels-wrapper">
                   <div key={data.pId}>

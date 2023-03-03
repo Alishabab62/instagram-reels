@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom';
 import "../firesbase";
 import "../css/Signup.css";
 import { getAuth, createUserWithEmailAndPassword , GoogleAuthProvider , signInWithPopup} from "firebase/auth";
-import {ref, uploadBytesResumable} from 'firebase/storage'
-import {database , storage } from '../firesbase'
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 export default class SignUp extends Component {
@@ -37,9 +35,7 @@ export default class SignUp extends Component {
             const user = userCredential.user;
             console.log(user)
             localStorage.setItem("users", JSON.stringify(user));
-            let uid  = user.uid;
-            const uploadRef = ref(storage , `/users/${uid}/profile`);
-            // const uploadTasks = uploadBytesResumable(uploadRef , )
+            window.location.href = '/main'
           })
           .catch((error) => {
             console.log(error)

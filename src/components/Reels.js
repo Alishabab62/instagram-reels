@@ -4,18 +4,20 @@ import { database } from "../firesbase";
 import { getDocs } from "firebase/firestore";
 import profile from '../images/profile.png'
 import Button from "./Button";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import SendIcon from '@mui/icons-material/Send';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Sidebar from "./Sidebar";
+import Like from "./Like";
 
 export default class Reels extends Component {
   constructor() {
     super();
     this.state = {
       posts: [],
+      user:{}
     };
   }
   componentDidMount() {
@@ -26,7 +28,12 @@ export default class Reels extends Component {
       .catch((error) => {
         console.log(error);
       });
+      let data = JSON.parse(localStorage.getItem("user")) || {};
+      this.setState({
+        user:data
+      })
   }
+ 
   render() {
     return (
       <div>
@@ -50,17 +57,20 @@ export default class Reels extends Component {
               </div>
             </div>
             <div className="reels-details">
-              <div>
-              <FavoriteBorderIcon style={{fontSize:"35px"}}/>
-              <p>0</p>
-              </div>
+              <Like postData={data} userData={this.state.user} id={item.id}/>
               <div>
               <AddCommentIcon style={{fontSize:"35px"}}/>
               <p>0</p>
               </div>
-              <SendIcon/>
-              <BookmarkBorderIcon/>
-              <MoreHorizIcon/>
+              <div>
+              <SendIcon style={{fontSize:"35px"}}/>
+              </div>
+              <div>
+              <BookmarkBorderIcon style={{fontSize:"35px"}}/>
+              </div>
+              <div>
+              <MoreHorizIcon style={{fontSize:"35px" , height:"35px"}}/>
+              </div>
               <img src={profile} alt="profile" />
             </div>
             </div>
