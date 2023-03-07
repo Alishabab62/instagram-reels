@@ -53,7 +53,6 @@ handleEnded = (e)=>{
    next.scrollIntoView();
    next.childNodes[0].childNodes[0].autoplay = true;
    next.childNodes[0].childNodes[0].currentTime = 0;
-   console.log(next.childNodes[0].childNodes[0].autoplay)
    e.target.mute = true;
  }
 }
@@ -64,7 +63,6 @@ handleEnded = (e)=>{
         <div className="main-reels-wrapper">
           {this.state.posts.map((item) => {
             const data = item.data();
-            // console.log(data)
             return (
               <div className="reels-wrapper" key={data.pId} ref={this.containerRef}>
                 <div>

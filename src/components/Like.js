@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import {updateDoc , doc} from 'firebase/firestore'
 import {  fstore } from '../firesbase';
-
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 export default class Like extends Component {
     constructor(){
         super()
@@ -51,7 +51,7 @@ export default class Like extends Component {
         return (
             <div>
                 {
-                    this.state.like === true ? <FavoriteBorderIcon style={{fontSize:"35px" , color:"red"}} onClick = {this.handleLike}/> : <FavoriteBorderIcon style={{fontSize:"35px" , }} onClick = {this.handleLike}/>
+                    this.state.like === true ? <FavoriteIcon style={{fontSize:"35px" , color:"red"}} onClick = {this.handleLike}/> : <FavoriteBorderIcon style={{fontSize:"35px" , }}  onClick = {this.handleLike}/>
                 }
                 <p>{this.state.likeCount}</p>
             </div>

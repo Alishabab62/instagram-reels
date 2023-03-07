@@ -3,11 +3,12 @@ import profile from "../images/profile.png";
 import { database } from "../firesbase";
 import { getDocs } from "firebase/firestore";
 import Button from "./Button";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import SendIcon from "@mui/icons-material/Send";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import  ReactDOM  from "react-dom";
+import Like from "./Like";
 
 export default class Feed extends Component {
   constructor() {
@@ -31,6 +32,23 @@ export default class Feed extends Component {
         console.log(error);
       });
   }
+  handleVideoClick = (e) => {
+    if (e.target.paused) {
+      e.target.play();
+    } else {
+      e.target.pause();
+    }
+  }
+
+handleEnded = (e)=>{
+ let next  = ReactDOM.findDOMNode(e.target.parentNode.parentNode.nextSibling);
+ if(next){
+   next.scrollIntoView();
+   next.childNodes[0].childNodes[0].autoplay = true;
+   next.childNodes[0].childNodes[0].currentTime = 0;
+   e.target.mute = true;
+ }
+}
   render() {
     return (
       <>
@@ -95,9 +113,9 @@ export default class Feed extends Component {
             {this.state.posts.map((item) => {
               const data = item.data();
               return (
-                <div className="reels-wrapper">
+                <div className="reels-wrapper" key={data.pId}>
                   <div key={data.pId}>
-                    <video src={data.uUrl} controls></video>
+                    <video src={data.uUrl} controls onEnded={this.handleEnded}></video>
                     <div className="reels-details-video">
                       <div className="top-div-reels">
                         <img src={profile} alt="profile" />
@@ -109,10 +127,8 @@ export default class Feed extends Component {
                     </div>
                   </div>
                   <div className="reels-details">
-                    <div>
-                      <FavoriteBorderIcon style={{ fontSize: "35px" }} />
-                      <p>0</p>
-                    </div>
+                  <Like postData={data} userData={this.state.user} id={item.id} />
+
                     <div>
                       <AddCommentIcon style={{ fontSize: "35px" }} />
                       <p>0</p>

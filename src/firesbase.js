@@ -26,3 +26,4 @@ export const database ={
   comments:collection( firestore,"comments")
 }
 export const storage = getStorage(app);
+
