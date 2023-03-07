@@ -4,13 +4,13 @@ import { database } from "../firesbase";
 import { getDocs } from "firebase/firestore";
 import profile from '../images/profile.png'
 import Button from "./Button";
-
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import SendIcon from '@mui/icons-material/Send';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Sidebar from "./Sidebar";
 import Like from "./Like";
+import  ReactDOM  from "react-dom";
 
 export default class Reels extends Component {
   constructor() {
@@ -35,36 +35,9 @@ export default class Reels extends Component {
     this.setState({
       user: data
     });
-
-    // Create a new Intersection Observer and observe the video element
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5
-    };
-
-    this.observer = new IntersectionObserver(
-      this.handleIntersection,
-      options
-    );
-    if (this.videoRef.current) {
-      this.observer.observe(this.videoRef.current);
-    }
   }
 
-  componentWillUnmount() {
-    this.observer.disconnect();
-  }
 
-  handleIntersection = (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.play();
-      } else {
-        entry.target.pause();
-      }
-    })
-  }
 
   handleVideoClick = (e) => {
     if (e.target.paused) {
@@ -73,9 +46,16 @@ export default class Reels extends Component {
       e.target.pause();
     }
   }
-handleEnded = ()=>{
-  console.log("hello")
-  this.containerRef.current.scrollBy(0, 200);
+
+handleEnded = (e)=>{
+ let next  = ReactDOM.findDOMNode(e.target.parentNode.parentNode.nextSibling);
+ if(next){
+   next.scrollIntoView();
+   next.childNodes[0].childNodes[0].autoplay = true;
+   next.childNodes[0].childNodes[0].currentTime = 0;
+   console.log(next.childNodes[0].childNodes[0].autoplay)
+   e.target.mute = true;
+ }
 }
   render() {
     return (
@@ -86,9 +66,9 @@ handleEnded = ()=>{
             const data = item.data();
             // console.log(data)
             return (
-              <div className="reels-wrapper" key={data.pId}>
+              <div className="reels-wrapper" key={data.pId} ref={this.containerRef}>
                 <div>
-                  <video src={data.uUrl} controls  onClick={this.handleVideoClick} onEnded={this.handleEnded} ref={this.containerRef}></video>
+                  <video src={data.uUrl} controls  onClick={this.handleVideoClick} onEnded={this.handleEnded}></video>
                   <div className="reels-details-video">
                     <div className="top-div-reels">
                       <img src={profile} alt="profile" />
