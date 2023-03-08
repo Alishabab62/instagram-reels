@@ -88,7 +88,7 @@ export default class Create extends Component {
             name={"file"}
             handleInputs={this.handleInputs}
           />
-          {this.state.loader ? <LinearProgress /> : ""}
+          {this.state.loader ? <LinearProgress /> : ""} 
         </div>
       </div>
     );
